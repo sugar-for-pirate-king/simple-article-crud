@@ -1,0 +1,35 @@
+<div class="form-group row">
+  <label for="title" class="col-form-label col-md-12">Title</label>
+  <div class="col-md-12">
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      placeholder="Title of article"
+      #articleTitle
+    />
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="body" class="col-form-label col-md-12">Body</label>
+  <div class="col-md-12">
+    <textarea
+      id="body"
+      cols="30"
+      rows="10"
+      class="form-control"
+      placeholder="Body of article"
+      #articleBody
+    ></textarea>
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-md-12">
+    <button class="btn btn-primary px-4" (click)="addArticle()">Submit</button>
+    <button class="btn btn-default px-4 mx-4" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</div>
