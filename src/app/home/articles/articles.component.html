@@ -1,3 +1,9 @@
-<div class="row px-4" *ngFor="let article of articles">
-  <app-article [article]="article"></app-article>
+<div *ngIf="articles.length > 0; else articleNotFound">
+  <div class="row px-4" *ngFor="let article of articles">
+    <app-article [article]="article"></app-article>
+  </div>
 </div>
+
+<ng-template #articleNotFound>
+  <span>Article not found</span>
+</ng-template>

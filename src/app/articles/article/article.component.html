@@ -1,8 +1,15 @@
 <div class="col-md-12">
   <div class="d-block font-weight-bold">
-    <a href="" [routerLink]="['/articles', article.id]">
-      {{ article.title }}
-    </a>
+    <div class="d-flex justify-content-between">
+      <a href="" [routerLink]="['/articles', article.id]">
+        {{ article.title }}
+      </a>
+      <div *ngIf="showPage">
+        <button (click)="removeArticle(article)" class="btn btn-danger btn-sm">
+          Delete
+        </button>
+      </div>
+    </div>
   </div>
   <p>{{ article.body }}</p>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Article } from "./../../shared/article.model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from "src/app/shared/article.service";
 
 @Component({
@@ -9,10 +9,13 @@ import { ArticleService } from "src/app/shared/article.service";
   styleUrls: ["./article.component.css"]
 })
 export class ArticleComponent implements OnInit {
+  showPage: Boolean = false;
+
   @Input() article: Article;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private articleService: ArticleService
   ) {}
 
@@ -20,17 +23,16 @@ export class ArticleComponent implements OnInit {
     let id = this.route.snapshot.params["id"];
     if (id) {
       this.article = this.findArticle(id);
+      this.showPage = true;
     }
   }
 
+  removeArticle(article: Article): void {
+    this.articleService.removeArticle(article);
+    this.router.navigate(["/"]);
+  }
+
   private findArticle(id: Number): Article {
-    let articles = this.articleService.getArticles();
-    let foundArticle = null;
-    articles.forEach(article => {
-      if (article.id == id) {
-        foundArticle = article;
-      }
-    });
-    return foundArticle;
+    return this.articleService.findArticleById(id);
   }
 }

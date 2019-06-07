@@ -14,5 +14,9 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit() {
     this.articles = this.articleService.getArticles();
+    this.articleService.removedArticle.subscribe((articles: Article[]) => {
+      this.articles = articles;
+      console.log("Hai");
+    });
   }
 }
