@@ -1,10 +1,10 @@
 import { EventEmitter } from "@angular/core";
 import { Article } from "./article.model";
-import { getTranslationForTemplate } from "@angular/core/src/render3/i18n";
 
 export class ArticleService {
   private articles: Article[] = [];
   addedArticle = new EventEmitter<Article>();
+  cacheId = 0;
 
   constructor() {
     let article1 = new Article("Chika dance", "This is body of chika dance");
@@ -14,13 +14,13 @@ export class ArticleService {
   }
 
   addArticle(article: Article) {
-    article.id = this.getRandomId();
+    article.id = this.getId();
     this.articles.unshift(article);
   }
 
-  getRandomId(): Number {
-    let randomNumber = Math.random() * 100000000;
-    return Math.round(randomNumber);
+  getId(): Number {
+    this.cacheId += 1;
+    return this.cacheId;
   }
 
   getArticles(): Article[] {
