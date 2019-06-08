@@ -32,6 +32,10 @@ export class ArticleComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
+  editArticle(article: Article): void {
+    this.router.navigate(["/articles", article.id, "edit"]);
+  }
+
   private findArticle(id: Number): Article {
     return this.articleService.findArticleById(id);
   }

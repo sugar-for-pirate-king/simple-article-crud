@@ -5,11 +5,17 @@
         {{ article.title }}
       </a>
       <div *ngIf="showPage">
+        <button
+          (click)="editArticle(article)"
+          class="btn btn-warning btn-sm px-2 mr-3"
+        >
+          Edit
+        </button>
         <button (click)="removeArticle(article)" class="btn btn-danger btn-sm">
           Delete
         </button>
       </div>
     </div>
   </div>
-  <p>{{ article.body }}</p>
+  <p class="my-2">{{ article.body }}</p>
 </div>
