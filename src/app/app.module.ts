@@ -10,12 +10,15 @@ import { ArticlesComponent } from "./home/articles/articles.component";
 import { ArticleService } from "./shared/article.service";
 import { ArticleComponent } from "./articles/article/article.component";
 import { EditArticleComponent } from "./articles/edit-article/edit-article.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "articles/new", component: AddArticleComponent },
   { path: "articles/:id", component: ArticleComponent },
-  { path: "articles/:id/edit", component: EditArticleComponent }
+  { path: "articles/:id/edit", component: EditArticleComponent },
+  { path: "404", component: PageNotFoundComponent },
+  { path: "**", redirectTo: "/404" }
 ];
 
 @NgModule({
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
     AddArticleComponent,
     ArticlesComponent,
     ArticleComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    PageNotFoundComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [ArticleService],
